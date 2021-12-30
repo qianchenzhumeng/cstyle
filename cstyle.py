@@ -127,7 +127,7 @@ class CStyle(object):
                  for kind in clang.cindex.CursorKind.get_all_kinds()}
         config = configparser.ConfigParser()
         if config_file is not None:
-            config.read(config_file)
+            config.read(config_file, encoding='utf-8')
             rules = config_section_to_dict(config, 'Rules')
             self.rules_db = {kinds[kind]: re.compile(pattern)
                              for (kind, pattern) in list(rules.items())}
