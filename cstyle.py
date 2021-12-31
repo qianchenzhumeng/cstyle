@@ -254,8 +254,9 @@ class CStyle(object):
     def check(self):
         """Check files against rules_db and return errors"""
         errors = []
+        parse_options=clang.cindex.TranslationUnit.PARSE_DETAILED_PROCESSING_RECORD
         for files in self.files:
-            errors += self.check_unit(clang.cindex.Index.create().parse(files))
+            errors += self.check_unit(clang.cindex.Index.create().parse(files, options=parse_options))
         return errors
 
     def generate_config(self):
